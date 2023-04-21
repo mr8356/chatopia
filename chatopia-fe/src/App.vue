@@ -1,26 +1,63 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/chat">Chat</router-link>
+  </nav>
+  <main>
+    <router-view />
+  </main>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+export default defineComponent({
+  data() {
+    return {
+      //
+    };
+  },
+  created() {
+    // this.$ws = io(`${location.hostname}:3000`);
+
+    // // const ws = new WebSocket(`${location.protocol === "https" ? "wss" : "ws"}://${location.hostname}:3000`);
+    // this.$ws.on("connect", () => {
+    //   console.log("connected");
+    // });
+
+    // ws.addEventListener("open", () => {
+    //   this.$ws = ws;
+    //   console.log("open");
+    // });
+  },
+});
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
+  main {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
