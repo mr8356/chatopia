@@ -1,9 +1,10 @@
+import { Socket } from 'socket.io-client';
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
-  import { io } from "socket.io-client";
-
   interface Vue {
-    $ws: io | null;
+    $socket: Socket | null;
   }
 }
+
+export {}

@@ -8,15 +8,11 @@
       <input type="text" id="chat-input" ref="chatInput">
       <button id="chat-send">Send</button>
     </form>
-
-    <p>Status: {{ socket ? socket.connected : "no" }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import ChatMessage from "@/components/ChatMessage.vue";
-import { Socket } from "socket.io-client";
-import { io } from "socket.io-client";
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -24,17 +20,8 @@ export default defineComponent({
   components: {
     ChatMessage,
   },
-  created() {
-    this.socket = io(`${location.hostname}:3000`);
-
-    // const ws = new WebSocket(`${location.protocol === "https" ? "wss" : "ws"}://${location.hostname}:3000`);
-    this.socket.on("connect", () => {
-      console.log("connected");
-    });
-  },
   data() {
     return {
-      socket: null as Socket | null,
       messages: [
         { content: "test" },
       ],
@@ -44,7 +31,7 @@ export default defineComponent({
     sendMessage() {
       const chatInput = this.$refs.chatInput as HTMLInputElement;
         this.messages.unshift({ content: chatInput.value });
-        this.socket?.emit("chat", { content: chatInput.value });
+        this.$socket.emit("chat", { content: chatInput.value });
         chatInput.value = "";
     },
   },

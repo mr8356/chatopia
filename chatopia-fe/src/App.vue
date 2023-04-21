@@ -1,11 +1,5 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/chat">Chat</router-link>
-  </nav>
-  <main>
-    <router-view />
-  </main>
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -19,22 +13,18 @@ export default defineComponent({
     };
   },
   created() {
-    // this.$ws = io(`${location.hostname}:3000`);
-
-    // // const ws = new WebSocket(`${location.protocol === "https" ? "wss" : "ws"}://${location.hostname}:3000`);
-    // this.$ws.on("connect", () => {
-    //   console.log("connected");
-    // });
-
-    // ws.addEventListener("open", () => {
-    //   this.$ws = ws;
-    //   console.log("open");
-    // });
   },
 });
 </script>
 
 <style lang="scss">
+@import "normalize.css";
+
+html, body, #app {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,10 +32,13 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
 
-  main {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 nav {
