@@ -9,6 +9,14 @@ import { Server, Socket } from 'socket.io';
 export class ChatsGateway {
   @WebSocketServer() server: Server;
 
+  handleConnection(client: Socket) {
+    this.server.emit('message', {
+      author: 'server',
+      content: `Client connected: ${client.id}`,
+    });
+    client.emit('connection', 'Successfully connected to the server');
+  }
+
   @SubscribeMessage('chat')
   handleMessage(client: Socket, payload: any): any {
     const message: string = payload.content;

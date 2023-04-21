@@ -1,0 +1,23 @@
+project/
+├── src/
+│   ├── app.module.ts
+│   ├── auth/
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── jwt.strategy.ts
+│   │   └── local.strategy.ts
+│   ├── users/
+│   │   ├── user.controller.ts
+│   │   ├── user.entity.ts
+│   │   ├── user.module.ts
+│   │   └── user.service.ts
+│   ├── messages/
+│   │   ├── message.controller.ts
+│   │   ├── message.entity.ts
+│   │   ├── message.module.ts
+│   │   └── message.service.ts
+│   ├── sockets/
+│   │   ├── chat.gateway.ts
+│   │   └── sockets.module.ts
+│   └── main.ts
+└── package.json
