@@ -1,11 +1,25 @@
-# Chatopia
-채팅 서비스
+# Chatopia - 친구와 채팅 서비스
 
 ## 사용 기술
 - NestJS
 - Vue.js
 - Socket.IO
 - MongoDB
+
+
+## 프론트엔드 서버 실행 (VueJS)
+```
+cd chatopia-fe/
+npm i
+npm run serve
+```
+
+## 백엔드 서버 실행 (NestJS)
+```
+cd chatopia-be/
+npm i
+npm run start
+```
 
 ## 기능
 - 사용자 인증 (로그인/로그아웃)
