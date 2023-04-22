@@ -1,7 +1,7 @@
 import { io, Socket } from "socket.io-client";
 import { Plugin } from "vue";
 
-declare module '@vue/runtime-core' {
+declare module "@vue/runtime-core" {
   interface Chatopia {
     auth: boolean;
 
@@ -20,8 +20,8 @@ const plugin: Plugin = {
 
     const socket = io(
       backendUrl.startsWith("https")
-      ? backendUrl.replace("https", "wss")
-      : backendUrl.replace("http", "ws"),
+        ? backendUrl.replace("https", "wss")
+        : backendUrl.replace("http", "ws"),
       { autoConnect: true }
     );
 
@@ -30,7 +30,7 @@ const plugin: Plugin = {
       auth: false,
       backendUrl,
     };
-  }
-}
+  },
+};
 
 export default plugin;

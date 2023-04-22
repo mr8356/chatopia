@@ -6,9 +6,13 @@
 
     <div class="auth-btngroup">
       <span>이미 계정이 있다면</span>
-      <router-link class="auth-btn_secondary" to="/auth/login">로그인</router-link>
+      <router-link class="auth-btn_secondary" to="/auth/login"
+        >로그인</router-link
+      >
       <div class="spacer"></div>
-      <button class="auth-submit" type="submit" @click.prevent="createAccount">계정 만들기</button>
+      <button class="auth-submit" type="submit" @click.prevent="createAccount">
+        계정 만들기
+      </button>
     </div>
   </form>
 </template>
@@ -19,8 +23,7 @@ import AuthInput from "@/components/AuthInput.vue";
 
 export default defineComponent({
   name: "RegisterForm",
-  props: {
-  },
+  props: {},
   components: {
     AuthInput,
   },

@@ -1,13 +1,14 @@
 <template>
   <div id="auth">
     <main id="auth-container">
-      <component :is="getCurrentStage"/>
+      <h1>Chatopia</h1>
+      <component :is="getCurrentStage" />
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import LoginForm from "@/components/LoginForm.vue";
 import RegisterForm from "@/components/RegisterForm.vue";
 
@@ -27,8 +28,7 @@ export default defineComponent({
       this.currentStage = "RegisterForm";
     }
   },
-  methods: {
-  },
+  methods: {},
   computed: {
     getCurrentStage() {
       if (this.$route.name === "Register") {

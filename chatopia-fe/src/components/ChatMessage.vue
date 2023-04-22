@@ -1,15 +1,15 @@
 <template>
   <div id="message">
-    <img id="message-avatar" src="@/assets/logo.png">
+    <img id="message-avatar" src="@/assets/logo.png" />
     <p>{{ content }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'ChatView',
+  name: "ChatView",
   props: {
     content: String,
   },

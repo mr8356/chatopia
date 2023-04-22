@@ -1,6 +1,6 @@
 <template>
   <div class="authinput-container">
-    <input id="authinput-input" :type="type" :placeholder="placeholder">
+    <input id="authinput-input" :type="type" :placeholder="placeholder" />
     <span id="authinput-error"></span>
   </div>
 </template>
