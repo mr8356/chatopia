@@ -15,15 +15,18 @@ import { UsersRepository } from "./users/users.repository";
 @Module({
   imports: [
     ChatsModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: "mongodb",
-      url: `mongodb://${process.env.USER_NAME}:${process.env.PASSWORD}@${process.env.MONGO_URL}/${process.env.DB_NAME}`,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.USER_NAME,
+      password: process.env.PASSWORD,
       entities: [User],
       synchronize: true,
       logging: true,
     }),
     UsersModule,
-    ConfigModule.forRoot(),
   ],
   controllers: [AppController, UsersController],
   providers: [AppService, ChatsGateway, UsersService],
