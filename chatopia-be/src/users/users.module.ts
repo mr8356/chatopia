@@ -5,7 +5,6 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { User } from "src/entity/users.entity";
 import { UsersRepository } from "./users.repository";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { MongoRepository } from "typeorm";
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

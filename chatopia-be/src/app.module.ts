@@ -8,9 +8,7 @@ import { UsersModule } from "./users/users.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "./entity/users.entity";
 import { ConfigModule } from "@nestjs/config";
-import { DataSource, MongoRepository } from "typeorm";
 import { UsersService } from "./users/users.service";
-import { UsersRepository } from "./users/users.repository";
 
 @Module({
   imports: [
