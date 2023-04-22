@@ -1,15 +1,13 @@
-## 채팅 서비스
-
+# Chatopia
+채팅 서비스
 
 ## 사용 기술
-
 - NestJS
-- VueJS
+- Vue.js
 - Socket.IO
 - MongoDB
 
 ## 기능
-
 - 사용자 인증 (로그인/로그아웃)
 - 친구 추가/삭제
 - 친구 목록 조회
