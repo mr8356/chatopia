@@ -17,17 +17,15 @@ import { UsersRepository } from "./users/users.repository";
     ChatsModule,
     TypeOrmModule.forRoot({
       type: "mongodb",
-      host: `mongodb://${process.env.MONGO_URL}/${process.env.DB_NAME}`,
-      port: parseInt(process.env.PORT),
-      username: process.env.USER_NAME,
-      password: process.env.PASSWORD,
-      database: process.env.DB_NAME,
+      url: `mongodb://${process.env.USER_NAME}:${process.env.PASSWORD}@${process.env.MONGO_URL}/${process.env.DB_NAME}`,
       entities: [User],
+      synchronize: true,
+      logging: true,
     }),
     UsersModule,
     ConfigModule.forRoot(),
   ],
   controllers: [AppController, UsersController],
-  providers: [AppService, ChatsGateway],
+  providers: [AppService, ChatsGateway, UsersService],
 })
 export class AppModule {}

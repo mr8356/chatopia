@@ -11,5 +11,6 @@ import { MongoRepository } from "typeorm";
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService, CreateUserDto, UsersRepository],
+  exports: [UsersService, UsersRepository],
 })
 export class UsersModule {}
