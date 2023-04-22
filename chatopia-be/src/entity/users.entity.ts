@@ -1,6 +1,6 @@
-import { Entity, Column, ObjectIdColumn, ObjectId } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectId } from "typeorm";
 
-@Entity({ name: 'users' })
+@Entity({ name: "users" })
 export class User {
   @ObjectIdColumn()
   id: ObjectId;
@@ -17,9 +17,9 @@ export class User {
   @Column()
   password: string;
 
-  @Column('bytea', { nullable: true })
+  @Column("bytea", { nullable: true })
   avatar: Buffer;
 
   @Column()
-  friends: string[];
+  friends: ObjectId[];
 }
