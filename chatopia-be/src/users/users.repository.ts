@@ -1,9 +1,8 @@
 import { InjectRepository } from "@nestjs/typeorm";
-import { MongoRepository } from "typeorm";
+import { DataSource, MongoRepository } from "typeorm";
 import { User } from "src/entity/users.entity";
 import { Injectable } from "@nestjs/common";
 
-@Injectable()
 export class UsersRepository {
   constructor(
     @InjectRepository(User)
