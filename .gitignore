@@ -1,0 +1,9 @@
+.vscode
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+.DS_Store

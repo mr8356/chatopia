@@ -1,7 +1,7 @@
 <template>
   <div class="authinput-container">
-    <input id="authinput-input" :type="type" :placeholder="placeholder">
-    <span id="authinput-error">입력 값이 잘못되었습니다</span>
+    <input id="authinput-input" :type="type" :placeholder="placeholder" />
+    <span id="authinput-error"></span>
   </div>
 </template>
 
@@ -47,5 +47,6 @@ export default defineComponent({
   color: #e44444;
 
   font-size: 12px;
+  height: 14px;
 }
 </style>

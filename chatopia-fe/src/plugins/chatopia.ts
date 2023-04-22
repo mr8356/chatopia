@@ -1,9 +1,11 @@
 import { io, Socket } from "socket.io-client";
 import { Plugin } from "vue";
 
-declare module '@vue/runtime-core' {
+declare module "@vue/runtime-core" {
   interface Chatopia {
     auth: boolean;
+
+    backendUrl: string;
   }
 
   interface ComponentCustomProperties {
@@ -14,13 +16,21 @@ declare module '@vue/runtime-core' {
 
 const plugin: Plugin = {
   install: (app) => {
-    const socket = io(`${location.hostname}:3000`, { autoConnect: true });
+    const backendUrl = "http://localhost:3000";
+
+    const socket = io(
+      backendUrl.startsWith("https")
+        ? backendUrl.replace("https", "wss")
+        : backendUrl.replace("http", "ws"),
+      { autoConnect: true }
+    );
 
     app.config.globalProperties.$socket = socket;
     app.config.globalProperties.$chatopia = {
       auth: false,
+      backendUrl,
     };
-  }
-}
+  },
+};
 
 export default plugin;
