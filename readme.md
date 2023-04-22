@@ -4,6 +4,7 @@
 ## 사용 기술
 
 - NestJS
+- VueJS
 - Socket.IO
 - MongoDB
 
