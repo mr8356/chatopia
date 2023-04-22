@@ -8,8 +8,20 @@ const routes = [
     },
   },
   {
-    path: "/auth",
+    path: '/auth',
     name: "Authenticate",
+    redirect: () => {
+      return { path: "/auth/login" };
+    },
+  },
+  {
+    path: "/auth/login",
+    name: "Login",
+    component: () => import(/* webpackChunkName: "auth" */ "../views/AuthView.vue"),
+  },
+  {
+    path: "/auth/register",
+    name: "Register",
     component: () => import(/* webpackChunkName: "auth" */ "../views/AuthView.vue"),
   },
   {

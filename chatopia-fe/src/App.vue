@@ -41,6 +41,10 @@ html, body, #app {
   box-sizing: border-box;
 }
 
+.spacer {
+  flex: 1;
+}
+
 nav {
   padding: 30px;
 }
