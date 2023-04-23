@@ -70,18 +70,18 @@ export class UsersController {
     );
     user.userId = createUserDto.userId;
     user.avatar = createUserDto.avatar;
-    return await this.usersService.join(user);
+    await this.usersService.join(user);
   }
 
   @Get("find/:userId")
   async findByUid(@Param("userId") userId: string) {
-    return await this.usersService.findUser(userId);
+    await this.usersService.findUser(userId);
   }
 
   @Get("friends/add/:userId")
   async addFriend(@Param("userId") friendUid: string) {
     const myId = "123"; // undo session
-    await this.usersService.addFriend(myId, friendUid);
+    this.usersService.addFriend(myId, friendUid);
   }
 
   @Get("friends")
