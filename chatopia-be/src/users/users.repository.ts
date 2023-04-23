@@ -16,6 +16,17 @@ export class UsersRepository {
     return await this.em.findOne({ where: { userId: userId } });
   }
 
+  async findOneByEmail(email: string): Promise<User> {
+    return await this.em.findOne({ where: { email } });
+  }
+
+  async findOneWithoutPassword(id: string): Promise<User> {
+    return await this.em.findOne({
+      where: { id },
+      select: ["id", "userId", "name", "email", "avatar", "friends"],
+    });
+  }
+
   async findOneById(id: string): Promise<User> {
     return await this.em.findOne({ where: { id: id } });
   }
