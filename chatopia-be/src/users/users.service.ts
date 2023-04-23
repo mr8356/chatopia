@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -12,6 +13,25 @@ export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async join(user: User): Promise<User> {
+    // Validate input data
+    if (!user.name || !user.email || !user.password) {
+      throw new BadRequestException("요청 데이터가 잘못되었습니다");
+    }
+
+    if (
+      typeof user.name !== "string" ||
+      typeof user.email !== "string" ||
+      typeof user.password !== "string"
+    ) {
+      throw new BadRequestException("요청 데이터가 잘못되었습니다");
+    }
+
+    const emailRegex =
+      /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(user.email)) {
+      throw new BadRequestException("잘못된 이메일 주소 형식입니다");
+    }
+
     const users: User[] = await this.usersRepository.findAll();
     const duplicatedUser = users.find(
       (us) => us.userId === user.userId || us.email === user.email,
