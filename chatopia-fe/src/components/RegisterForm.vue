@@ -1,8 +1,26 @@
 <template>
   <form id="login">
-    <AuthInput type="username" placeholder="아이디" ref="usernameInput" />
-    <AuthInput type="email" placeholder="이메일" ref="emailInput" />
-    <AuthInput type="password" placeholder="비밀번호" ref="passwordInput" />
+    <AuthInput
+      type="username"
+      placeholder="아이디"
+      v-model:value="username.value"
+      v-model:valid="username.valid"
+      :required="true"
+    />
+    <AuthInput
+      type="email"
+      placeholder="이메일"
+      v-model:value="email.value"
+      v-model:valid="email.valid"
+      :required="true"
+    />
+    <AuthInput
+      type="password"
+      placeholder="비밀번호"
+      v-model:value="password.value"
+      v-model:valid="password.valid"
+      :required="true"
+    />
 
     <div class="auth-btngroup">
       <span>이미 계정이 있다면</span>
@@ -27,11 +45,27 @@ export default defineComponent({
   components: {
     AuthInput,
   },
+  data() {
+    return {
+      username: {
+        value: "",
+        valid: false,
+      },
+      email: {
+        value: "",
+        valid: false,
+      },
+      password: {
+        value: "",
+        valid: false,
+      },
+    };
+  },
   methods: {
     async createAccount() {
-      const usernameInput = this.$refs.usernameInput as HTMLInputElement;
-      const emailInput = this.$refs.emailInput as HTMLInputElement;
-      const passwordInput = this.$refs.passwordInput as HTMLInputElement;
+      if (!this.username.valid || !this.email.valid || !this.password.valid) {
+        return;
+      }
 
       const res = await fetch(`${this.$chatopia.backendUrl}/users/add`, {
         method: "POST",
@@ -39,13 +73,14 @@ export default defineComponent({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: usernameInput.value,
-          email: emailInput.value,
-          password: passwordInput.value,
+          name: this.username.value,
+          email: this.email.value,
+          password: this.password.value,
         }),
       });
 
-      console.log(res.json());
+      const json = await res.json();
+      console.log(json);
     },
   },
 });
