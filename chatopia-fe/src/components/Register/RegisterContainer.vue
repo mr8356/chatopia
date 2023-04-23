@@ -49,7 +49,7 @@ export default defineComponent({
         },
         body: JSON.stringify({
           email: this.email,
-          id: this.id,
+          userid: this.id,
           name: this.name,
           password: this.password,
         }),
