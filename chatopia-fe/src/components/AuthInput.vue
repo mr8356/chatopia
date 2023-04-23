@@ -12,6 +12,7 @@
       @keypress="inputChanged"
       @input="inputChanged"
       :required="required"
+      autofocus
     />
     <span id="authinput-error">{{ errorMessage }}</span>
   </div>
@@ -50,10 +51,7 @@ export default defineComponent({
 
       this.$emit("update:value", element.value || "");
 
-      console.log(element.checkValidity(), element.validity.valid);
-
       this.$emit("update:valid", element.validity.valid);
-      // this.valid = element.validity.valid;
     },
   },
   computed: {

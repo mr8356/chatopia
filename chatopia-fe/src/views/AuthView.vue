@@ -10,13 +10,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import LoginForm from "@/components/LoginForm.vue";
-import RegisterForm from "@/components/RegisterForm.vue";
+import RegisterContainer from "@/components/Register/RegisterContainer.vue";
 
 export default defineComponent({
   name: "AuthView",
   components: {
     LoginForm,
-    RegisterForm,
+    RegisterContainer,
   },
   data() {
     return {
@@ -25,14 +25,14 @@ export default defineComponent({
   },
   created() {
     if (this.$route.name === "Register") {
-      this.currentStage = "RegisterForm";
+      this.currentStage = "RegisterContainer";
     }
   },
   methods: {},
   computed: {
     getCurrentStage() {
       if (this.$route.name === "Register") {
-        return "RegisterForm";
+        return "RegisterContainer";
       }
 
       return "LoginForm";
@@ -50,7 +50,8 @@ export default defineComponent({
   flex: 1;
 
   #auth-container {
-    width: 32%;
+    width: 440px;
+    max-width: 440px;
     height: 64%;
 
     border: 1px solid #c4c4c4;
@@ -60,10 +61,38 @@ export default defineComponent({
 
     @media (max-width: 1023px) {
       width: 100%;
+      max-width: 100%;
       height: 100%;
 
       border: none;
       border-radius: 0;
+    }
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+
+    text-align: left;
+
+    font-size: 14px;
+    color: #555;
+
+    &.list {
+      padding: 0 8px;
+
+      &::before {
+        content: "•";
+        margin-right: 4px;
+      }
+
+      &.list-spacer::before {
+        content: "";
+      }
+
+      &.list-l2 {
+        padding: 0 14px;
+      }
     }
   }
 }
