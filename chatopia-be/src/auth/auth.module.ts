@@ -2,7 +2,7 @@ import { Module, forwardRef } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { PassportModule } from "@nestjs/passport";
 import { UsersModule } from "src/users/users.module";
-import { JwtModule } from "@nestjs/jwt";
+import { JwtModule, JwtService } from "@nestjs/jwt";
 import { JwtStrategy } from "./jwt/jwt.strategy";
 
 @Module({
@@ -15,8 +15,8 @@ import { JwtStrategy } from "./jwt/jwt.strategy";
     // 서로 참조할때 순환모듈
     forwardRef(() => UsersModule),
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, JwtService],
   //
-  exports: [AuthService, JwtStrategy],
+  exports: [AuthService, JwtStrategy, JwtService],
 })
 export class AuthModule {}
