@@ -14,7 +14,7 @@ export class UsersRepository {
     return await this.em.save(user);
   }
   async findOne(id: ObjectId): Promise<User> {
-    return await this.em.findOne({ where: { id } });
+    return await this.em.findOne({ where: { _id: new ObjectId(id) } });
   }
 
   async findOneByUid(userId: string): Promise<User> {
@@ -30,10 +30,6 @@ export class UsersRepository {
       where: { id },
       select: ["id", "userId", "name", "email", "avatar", "friends"],
     });
-  }
-
-  async findOneById(id: string): Promise<User> {
-    return await this.em.findOne({ where: { id: id } });
   }
 
   async findAll(): Promise<User[]> {
