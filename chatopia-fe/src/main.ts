@@ -11,7 +11,7 @@ router.beforeEach((to) => {
   if (
     !to.path.startsWith("/auth") &&
     !to.path.startsWith("/legal") &&
-    !app.config.globalProperties.$chatopia.auth
+    !app.config.globalProperties.$chatopia.token()
   ) {
     return "/auth";
   }

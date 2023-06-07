@@ -1,9 +1,11 @@
 import { io, Socket } from "socket.io-client";
 import { Plugin } from "vue";
+import config from "../config";
 
 declare module "@vue/runtime-core" {
   interface Chatopia {
-    auth: boolean;
+    // authenticated: () => boolean;
+    token: () => string | null;
 
     backendUrl: string;
   }
@@ -16,7 +18,7 @@ declare module "@vue/runtime-core" {
 
 const plugin: Plugin = {
   install: (app) => {
-    const backendUrl = "http://localhost:3000";
+    const backendUrl = config.backend_url;
 
     const socket = io(
       backendUrl.startsWith("https")
@@ -27,8 +29,8 @@ const plugin: Plugin = {
 
     app.config.globalProperties.$socket = socket;
     app.config.globalProperties.$chatopia = {
-      auth: false,
       backendUrl,
+      token: () => localStorage.getItem("token"),
     };
   },
 };
