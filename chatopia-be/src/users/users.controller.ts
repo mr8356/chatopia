@@ -15,8 +15,8 @@ import { ObjectId } from "typeorm";
 import { LoginRequestDto } from "src/dto/login-request.dto";
 import { AuthService } from "src/auth/auth.service";
 import * as bcrypt from "bcrypt";
-import { JwtAuthGuard } from "src/auth/jwt/jwt.guard";
 import { CurrentUser } from "src/common/decorators/user.decorator";
+import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller("users")
 export class UsersController {
@@ -30,7 +30,7 @@ export class UsersController {
     await this.authService.jwtLogIn(loginRequestDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Get("current")
   getCurrentUser(@CurrentUser() user: User) {
     // costom decorator

@@ -30,7 +30,9 @@ export class AuthService {
     const payload = { sub: user.id };
 
     return {
-      token: this.jwtService.sign(payload),
+      token: this.jwtService.sign(payload, {
+        secret: process.env.SECRET_KEY,
+      }),
     };
   }
 }
