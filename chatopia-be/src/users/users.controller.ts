@@ -32,7 +32,9 @@ export class UsersController {
   @Get("current")
   async getCurrentUser(@CurrentUserId() id: ObjectId) {
     // costom decorator
-    return await this.usersService.findOne(id);
+    const user = await this.usersService.findOne(id);
+    delete user.password;
+    return user;
   }
 
   @Post("add")

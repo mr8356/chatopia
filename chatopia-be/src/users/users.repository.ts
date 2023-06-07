@@ -27,7 +27,7 @@ export class UsersRepository {
 
   async findOneWithoutPassword(id: string): Promise<User> {
     return await this.em.findOne({
-      where: { id },
+      where: { _id: new ObjectId(id) },
       select: ["id", "userId", "name", "email", "avatar", "friends"],
     });
   }
