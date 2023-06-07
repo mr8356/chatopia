@@ -23,6 +23,10 @@ export class UsersService {
     return await this.usersRepository.saveUser(user);
   }
 
+  async findOne(id: ObjectId): Promise<User> {
+    return await this.usersRepository.findOne(id);
+  }
+
   async findUser(userId: string): Promise<User> {
     let user: User = null;
     try {
@@ -33,15 +37,15 @@ export class UsersService {
     return user;
   }
 
-  async addFriend(userId: string, friendId: string) {
-    const user = await this.usersRepository.findOneById(userId);
-    const friend = await this.findUser(friendId);
+  async addFriend(id: ObjectId, friendUid: string) {
+    const user = await this.usersRepository.findOne(id);
+    const friend = await this.findUser(friendUid);
     user.friends.push(friend.id);
     return await this.usersRepository.updateUser(user);
   }
 
-  async findAllFriends(userId: string): Promise<ObjectId[]> {
-    const user: User = await this.usersRepository.findOneById(userId);
+  async findAllFriends(id: ObjectId): Promise<ObjectId[]> {
+    const user: User = await this.usersRepository.findOne(id);
     return user.friends;
   }
 }
