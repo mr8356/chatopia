@@ -15,7 +15,7 @@ import { ObjectId } from "typeorm";
 import { LoginRequestDto } from "src/dto/login-request.dto";
 import { AuthService } from "src/auth/auth.service";
 import * as bcrypt from "bcrypt";
-import { CurrentUser } from "src/common/decorators/user.decorator";
+import { CurrentUserId } from "src/common/decorators/user.decorator";
 import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller("users")
@@ -32,9 +32,9 @@ export class UsersController {
 
   @UseGuards(AuthGuard)
   @Get("current")
-  getCurrentUser(@CurrentUser() user: User) {
+  async getCurrentUser(@CurrentUserId() id: ObjectId) {
     // costom decorator
-    return user;
+    return await this.usersService.findOne(id);
   }
 
   @Post("add")
@@ -79,14 +79,15 @@ export class UsersController {
   }
 
   @Get("friends/add/:userId")
-  async addFriend(@Param("userId") friendUid: string) {
-    const myId = "123"; // undo session
-    this.usersService.addFriend(myId, friendUid);
+  async addFriend(
+    @CurrentUserId() id: ObjectId,
+    @Param("userId") friendUid: string,
+  ) {
+    this.usersService.addFriend(id, friendUid);
   }
 
   @Get("friends")
-  async showFriends(): Promise<ObjectId[]> {
-    const myId = "123"; // undo session
-    return await this.usersService.findAllFriends(myId);
+  async showFriends(@CurrentUserId() id: ObjectId): Promise<ObjectId[]> {
+    return await this.usersService.findAllFriends(id);
   }
 }

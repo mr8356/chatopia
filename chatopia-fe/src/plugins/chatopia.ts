@@ -21,14 +21,16 @@ const plugin: Plugin = {
   install: (app) => {
     const backendUrl = config.backend_url;
 
-    const socket = io(
-      backendUrl.startsWith("https")
-        ? backendUrl.replace("https", "wss")
-        : backendUrl.replace("http", "ws"),
-      { autoConnect: true }
-    );
+    // const socket = io(
+    //   backendUrl.startsWith("https")
+    //     ? backendUrl.replace("https", "wss")
+    //     : backendUrl.replace("http", "ws"),
+    //   { autoConnect: true }
+    // );
 
-    app.config.globalProperties.$socket = socket;
+    // app.config.globalProperties.$socket = socket;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    app.config.globalProperties.$socket = {} as any;
     app.config.globalProperties.$chatopia = {
       backendUrl,
       token: () => localStorage.getItem("token"),

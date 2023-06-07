@@ -2,6 +2,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { MongoRepository } from "typeorm";
 import { User } from "src/entity/users.entity";
 import { Injectable } from "@nestjs/common";
+import { ObjectId } from "mongodb";
 @Injectable()
 export class UsersRepository {
   constructor(
@@ -12,6 +13,10 @@ export class UsersRepository {
   async saveUser(user: User): Promise<User> {
     return await this.em.save(user);
   }
+  async findOne(id: ObjectId): Promise<User> {
+    return await this.em.findOne({ where: { id } });
+  }
+
   async findOneByUid(userId: string): Promise<User> {
     return await this.em.findOne({ where: { userId: userId } });
   }
