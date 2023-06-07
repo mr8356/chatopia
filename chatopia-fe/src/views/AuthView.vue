@@ -18,18 +18,18 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import LoginForm from "@/components/LoginForm.vue";
+import LoginContainer from "@/components/Login/LoginContainer.vue";
 import RegisterContainer from "@/components/Register/RegisterContainer.vue";
 
 export default defineComponent({
   name: "AuthView",
   components: {
-    LoginForm,
+    LoginContainer,
     RegisterContainer,
   },
   data() {
     return {
-      currentStage: "LoginForm",
+      currentStage: "LoginContainer",
     };
   },
   created() {
@@ -44,7 +44,7 @@ export default defineComponent({
         return "RegisterContainer";
       }
 
-      return "LoginForm";
+      return "LoginContainer";
     },
   },
 });
