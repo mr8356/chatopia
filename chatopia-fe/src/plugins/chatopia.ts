@@ -6,6 +6,7 @@ declare module "@vue/runtime-core" {
   interface Chatopia {
     // authenticated: () => boolean;
     token: () => string | null;
+    tokenAsBearer: () => string;
 
     backendUrl: string;
   }
@@ -31,6 +32,10 @@ const plugin: Plugin = {
     app.config.globalProperties.$chatopia = {
       backendUrl,
       token: () => localStorage.getItem("token"),
+      tokenAsBearer: () => {
+        const token = localStorage.getItem("token");
+        return token ? `Bearer ${token}` : "";
+      },
     };
   },
 };
