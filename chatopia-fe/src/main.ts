@@ -10,6 +10,7 @@ app.use(chatopia).use(router).mount("#app");
 router.beforeEach((to) => {
   if (
     !to.path.startsWith("/auth") &&
+    !to.path.startsWith("/legal") &&
     !app.config.globalProperties.$chatopia.auth
   ) {
     return "/auth";

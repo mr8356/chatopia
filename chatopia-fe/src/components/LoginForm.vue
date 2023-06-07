@@ -1,5 +1,6 @@
 <template>
   <form id="login">
+    <h2>친구와 채팅 서비스</h2>
     <AuthInput type="email" placeholder="아이디 또는 이메일" />
     <AuthInput type="password" placeholder="비밀번호" />
 
@@ -33,5 +34,13 @@ export default defineComponent({
   flex-direction: column;
 
   gap: 8px;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 8px;
+
+    font-weight: 400;
+  }
 }
 </style>

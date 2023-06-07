@@ -38,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "chat" */ "../views/ChatView.vue"),
   },
+  // {
+  //   path: "/legal/tos",
+  //   name: "EULA",
+  //   component: () =>
+  //     import(/* webpackChunkName: "chat" */ "../views/LegalView.vue"),
+  // },
 ];
 
 const router = createRouter({

@@ -3,6 +3,15 @@
     <main id="auth-container">
       <h1>Chatopia</h1>
       <component :is="getCurrentStage" />
+      <div class="spacer"></div>
+      <footer>
+        <p>
+          계속함으로서,
+          <router-link to="/legal/eula">최종 이용자 약관</router-link>과
+          <router-link to="/legal/privacy">개인정보 처리방침</router-link>을
+          동의한 것으로 간주합니다
+        </p>
+      </footer>
     </main>
   </div>
 </template>
@@ -50,6 +59,9 @@ export default defineComponent({
   flex: 1;
 
   #auth-container {
+    display: flex;
+    flex-direction: column;
+
     width: 440px;
     max-width: 440px;
     height: 64%;
