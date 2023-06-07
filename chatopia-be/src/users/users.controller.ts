@@ -5,14 +5,12 @@ import {
   Get,
   Param,
   Post,
-  Req,
   UseGuards,
 } from "@nestjs/common";
 import { User } from "src/entity/users.entity";
 import { CreateUserDto } from "../dto/create-user.dto";
 import { UsersService } from "./users.service";
 import { ObjectId } from "typeorm";
-import { LoginRequestDto } from "src/dto/login-request.dto";
 import { AuthService } from "src/auth/auth.service";
 import * as bcrypt from "bcrypt";
 import { CurrentUserId } from "src/common/decorators/user.decorator";
@@ -25,10 +23,10 @@ export class UsersController {
     private readonly authService: AuthService,
   ) {}
 
-  @Post("login")
-  async login(@Body() loginRequestDto: LoginRequestDto) {
-    await this.authService.jwtLogIn(loginRequestDto);
-  }
+  // @Post("login")
+  // async login(@Body() loginRequestDto: LoginRequestDto) {
+  //   await this.authService.jwtLogIn(loginRequestDto);
+  // }
 
   @UseGuards(AuthGuard)
   @Get("current")

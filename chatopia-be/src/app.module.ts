@@ -11,6 +11,7 @@ import { ConfigModule } from "@nestjs/config";
 import { UsersService } from "./users/users.service";
 import { AuthService } from "./auth/auth.service";
 import { AuthModule } from "./auth/auth.module";
+import { Chat } from "./entity/chats.entity";
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { AuthModule } from "./auth/auth.module";
       port: parseInt(process.env.DB_PORT),
       username: process.env.USER_NAME,
       password: process.env.PASSWORD,
-      entities: [User],
+      entities: [User, Chat],
       synchronize: true,
       logging: true,
     }),
